@@ -1,20 +1,18 @@
+import Lottie from "lottie-react";
 import React from "react";
+import animation from '../../src/lottie/register.json'
 
 const Register = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center h-screen bg-base-200">
+    <div className="flex flex-col lg:flex-row items-center justify-center md:h-[90vh]">
       {/* Left Side: Image */}
-      <div className="lg:w-1/2 w-full flex justify-center">
-        <img
-          src="https://via.placeholder.com/500"
-          alt="Registration Visual"
-          className="max-w-full h-auto rounded-lg shadow-md"
-        />
+      <div className="lg:w-1/2 w-[500px] flex justify-center">
+        <Lottie animationData={animation} loop={ true} />
       </div>
 
       {/* Right Side: Form */}
-      <div className="lg:w-1/2 w-full px-8 lg:px-16 py-12 bg-base-100 shadow-lg rounded-lg">
-        <h2 className="text-3xl font-bold text-center mb-8">Register</h2>
+      <div className="lg:w-1/2 w-full px-8 lg:px-16 pb-12 bg-base-100 rounded-lg">
+        <h2 className="text-3xl font-bold text-center mb-0">Register</h2>
         <form className="space-y-4">
           {/* Name */}
           <div className="form-control">
@@ -24,7 +22,7 @@ const Register = () => {
             <input
               type="text"
               placeholder="Enter your name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full border-mainPrimary"
             />
           </div>
 
@@ -36,7 +34,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full border-mainPrimary"
             />
           </div>
 
@@ -48,7 +46,7 @@ const Register = () => {
             <input
               type="text"
               placeholder="Enter your photo URL"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full border-mainPrimary"
             />
           </div>
 
@@ -60,13 +58,13 @@ const Register = () => {
             <input
               type="password"
               placeholder="Enter your password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full border-mainPrimary"
             />
           </div>
 
           {/* Submit Button */}
           <div className="form-control mt-6">
-            <button className="btn btn-primary w-full">Register</button>
+            <button className="btn bg-mainPrimary text-white w-full">Register</button>
           </div>
         </form>
       </div>
