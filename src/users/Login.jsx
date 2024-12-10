@@ -1,7 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/AuthContext";
 
 const Login = () => {
+  const { loginAuth } = useContext(UserContext)
+  const navigate = useNavigate()
+  
+  const handelLogin = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const email = form.email.value
+    const password = form.password.value
+    loginAuth(email, password)
+      .then(res => {
+        console.log(res.user)
+        navigate('/')
+      })
+    .catch(err => console.log(err))
+  }
   return (
     <div className="flex h-[90vh] items-center justify-center md:p-0">
       <div className="flex h-full w-full overflow-hidden rounded-xl shadow-md">
@@ -14,7 +30,7 @@ const Login = () => {
           <h2 className="pb-8 text-center text-3xl font-semibold tracking-tight text-mainPrimary font-headingFont">
             Login Now
           </h2>
-          <form className="flex w-full flex-col items-center justify-center gap-4">
+          <form onSubmit={handelLogin} className="flex w-full flex-col items-center justify-center gap-4">
             <input
               className="w-[80%] rounded-lg border border-Maintext-mainPrimary bg-transparent py-2 pl-4 text-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-300/50 md:w-[60%] dark:text-zinc-400"
               type="email"
