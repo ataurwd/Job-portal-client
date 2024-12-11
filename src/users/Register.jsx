@@ -5,7 +5,7 @@ import { UserContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { register } = useContext(UserContext);
+  const { register, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handelRegisterForm = (e) => {
@@ -15,7 +15,7 @@ const Register = () => {
     const password = form.password.value;
     register(email, password)
       .then((user) => {
-        console.log(user.user);
+        setUser(user.user);
         navigate("/");
       })
       .catch((err) => console.log(err));

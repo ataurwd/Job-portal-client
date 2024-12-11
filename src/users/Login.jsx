@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/AuthContext";
 
 const Login = () => {
-  const { loginAuth } = useContext(UserContext)
+  const { loginAuth, setUser,googleLogin } = useContext(UserContext)
   const navigate = useNavigate()
   
   const handelLogin = (e) => {
@@ -13,10 +13,19 @@ const Login = () => {
     const password = form.password.value
     loginAuth(email, password)
       .then(res => {
-        console.log(res.user)
+        setUser(res.user)
         navigate('/')
       })
     .catch(err => console.log(err))
+  }
+
+  const handelGoogleLogin = () => { 
+    googleLogin()
+      .then(res => {
+        setUser(res.user)
+        navigate('/')
+      })
+     .catch(err => console.log(err))
   }
   return (
     <div className="flex h-[90vh] items-center justify-center md:p-0">
@@ -63,7 +72,7 @@ const Login = () => {
             <hr className="flex-1 border-Maintext-mainPrimary" />
           </div>
           {/* sign with google */}
-          <button className="group mx-auto flex h-[50px] w-fit items-center overflow-hidden rounded-full shadow-md outline-none ring-1 ring-Maintext-mainPrimary">
+          <button onClick={handelGoogleLogin} className="group mx-auto flex h-[50px] w-fit items-center overflow-hidden rounded-full shadow-md outline-none ring-1 ring-Maintext-mainPrimary">
             <div className="relative z-20 flex h-full items-center bg-Maintext-mainPrimary px-4 text-lg text-mainPrimary duration-300 group-hover:bg-transparent group-hover:text-mainPrimary">
               Signin with
             </div>
