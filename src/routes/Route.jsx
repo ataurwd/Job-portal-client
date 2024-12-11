@@ -6,6 +6,7 @@ import Job from '../pages/Jobs/Job';
 import Login from './../users/Login';
 import Register from './../users/Register';
 import AddJobs from '../pages/AddJobs';
+import JobDetails from './../components/JobDetails';
 
 const route = createBrowserRouter([
     {
@@ -18,11 +19,17 @@ const route = createBrowserRouter([
             },
             {
                 path: '/jobs',
-                element: <Job/>
+                element: <Job />,
+                loader: () => fetch('http://localhost:3000/added-jobs')
             },
             {
                 path: '/add-jobs',
                 element: <AddJobs/>
+            },
+            {
+                path: '/jobs/:id',
+                element: <JobDetails />,
+                loader: ({ params }) => fetch(`http://localhost:3000/jobs/${params.id}`)
             },
             {
                 path: '/login',
