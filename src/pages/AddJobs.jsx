@@ -43,15 +43,15 @@ const AddJobs = () => {
     };
     
     console.log(formData);
-    // axios.post("http://localhost:3000/add-job", formData).then((data) => {
-    //   console.log(data.data);
-    //   form.reset();
-    //   Swal.fire({
-    //     title: "Job added successfully",
-    //     text: "you can now see then job in the all jobs list",
-    //     icon: "success"
-    //   });
-    // });
+    axios.post("http://localhost:3000/add-job", formData).then((data) => {
+      console.log(data.data);
+      form.reset();
+      Swal.fire({
+        title: "Job added successfully",
+        text: "you can now see then job in the all jobs list",
+        icon: "success"
+      });
+    });
   };
   
 

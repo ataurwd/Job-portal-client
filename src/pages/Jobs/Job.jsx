@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import axios  from 'axios';
 
 const Job = () => {
-  const data = useLoaderData();
+  const [jobData, setData] = useState([])
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState(data)
+  const [filter, setFilter] = useState([])
 
   useEffect(() => {
-    if (search) {
-      fetch(`http://localhost:3000/search?title=${search}`) 
-        .then((res) => res.json())
-        .then((data) => setFilter(data));
-    }
-  }, [search]);
+    axios
+      .get("http://localhost:3000/added-jobs" ,{withCredentials: true})
+      .then((res) => {
+        setData(res.data); 
+        // setFilter(res.data); 
+      })
+  }, []);
+
+  
+  // useEffect(() => {
+  //   if (search) {
+  //     fetch(`http://localhost:3000/search?title=${search}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setFilter(data))
+  //       .catch((err) => console.error("Error fetching filtered jobs:", err));
+  //   } else {
+  //     setFilter(jobData);
+  //   }
+  // }, [search, jobData]); 
 
   return (
     <div className="bg-mainSecondary pt-4">
@@ -36,7 +50,7 @@ const Job = () => {
         </p>
       </div>
       <div className="lg:px-24 md:px-14 px-3 grid grid-cols-1 lg:grid-cols-3 gap-10 md:grid-cols-2 lg:py-10 md:py-5 my-2">
-        {filter.map((job) => (
+        {jobData.map((job) => (
           <Link
             to={`/jobs/${job._id}`}
             key={job._id}
