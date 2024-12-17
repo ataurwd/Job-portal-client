@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import axios  from 'axios';
+import useAxios from "../../hook/useAxios";
 
 const Job = () => {
   const [jobData, setData] = useState([])
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState([])
 
+  const axiosFun = useAxios()
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/added-jobs" ,{withCredentials: true})
-      .then((res) => {
-        setData(res.data); 
-        // setFilter(res.data); 
-      })
+    // axios
+    //   .get("http://localhost:3000/added-jobs" ,{withCredentials: true})
+    //   .then((res) => {
+    //     setData(res.data); 
+    //     // setFilter(res.data); 
+    //   })
+    axiosFun.get('/added-jobs')
+    .then(res => setData(res.data));
+    
   }, []);
 
   

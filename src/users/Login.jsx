@@ -17,11 +17,11 @@ const Login = () => {
       .then(res => {
         setUser(res.user)
         // navigate(location?.state ? location.state : '/')
-        const user = {email: email}
-        axios.post('http://localhost:3000/jwt', user, {withCredentials: true})
-          .then(data => {
-          console.log(data)
-        })
+        // const user = {email: email}
+        // axios.post('http://localhost:3000/jwt', user, {withCredentials: true})
+        //   .then(data => {
+        //   console.log(data)
+        // })
       })
     .catch(err => console.log(err))
   }
